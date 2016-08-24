@@ -42,6 +42,8 @@ services:
         REDIS_HOST: sensu-redis
       volumes:
         - sensu_server_conf:/etc/sensu/conf.d
+        - sensu_server_checks:/etc/sensu/check.d
+        - sensu_server_handlers:/etc/sensu/handlers
 
     sensu-client:
       container_name: sensu-client
@@ -140,10 +142,22 @@ volumes:
       driver: local
     sensu_client_conf:
       driver: local
+    sensu_server_conf:
+      driver: efs
+      driver_opts:
+        share: ${Sensu_EFS_VolumeId}/sensu-server-conf/conf.d
+    sensu_server_checks:
+      driver: efs
+      driver_opts:
+        share: ${Sensu_EFS_VolumeId}/sensu-server-conf/check.d
+    sensu_server_handlers:
+      driver: efs
+      driver_opts:
+        share: ${Sensu_EFS_VolumeId}/sensu-server-conf/handlers
     sensu_client_plugins:
       driver: efs
       driver_opts:
-        share: ${Sensu_Client_Plugin_EFS_VolumeId}/sensu-client/plugins
+        share: ${Sensu_EFS_VolumeId}/sensu-client/plugins
     sensu_rabbitmq_data:
       driver: local
     sensu_redis_data:
