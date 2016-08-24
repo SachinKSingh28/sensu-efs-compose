@@ -145,15 +145,15 @@ volumes:
     sensu_server_conf:
       driver: efs
       driver_opts:
-        share: ${Sensu_EFS_VolumeId}/sensu-server-conf/conf.d
+        share: ${Sensu_EFS_VolumeId}/sensu-server/conf.d
     sensu_server_checks:
       driver: efs
       driver_opts:
-        share: ${Sensu_EFS_VolumeId}/sensu-server-conf/check.d
+        share: ${Sensu_EFS_VolumeId}/sensu-server/check.d
     sensu_server_handlers:
       driver: efs
       driver_opts:
-        share: ${Sensu_EFS_VolumeId}/sensu-server-conf/handlers
+        share: ${Sensu_EFS_VolumeId}/sensu-server/handlers
     sensu_client_plugins:
       driver: efs
       driver_opts:
